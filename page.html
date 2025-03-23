@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>trang admin dang nhap bai ATTT nhom 12</title>
+        <link rel="stylesheet" href="./page.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+    </head>
+    <body>
+        <div class="sidebar">
+            <div class="logo"></div>
+            <ul class="menu">
+                <li class="active">
+                    <a href="#">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-user"></i>
+                        <span>Profiles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Statistics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Careers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-question-circle"></i>
+                        <span>FAQ</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-star"></i>
+                        <span>Testimonials</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li class="logout">
+                    <a href="#">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main--content">
+            <div class="header--wrapper">
+                <div class="header--title">
+                    <span>Primary</span>
+                    <h2>Dashboard</h2>
+                </div>
+                <div class="user--info">
+                    <div class="search--box">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text" placeholder="Search" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="tabular--wrapper">
+                <h3 class="main--title">Account</h3>
+                <div class="button-container">
+                    <button class="add-button">
+                        <i class="fas fa-plus"></i> Thêm tài khoản
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Phone Number</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Role</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024-10-25</td>
+                                <td>Hoang Dinh Minh Trinh</td>
+                                <td>0352071640</td>
+                                <td>trinhhdm2798@ut.edu.vn</td>
+                                <td>********</td>
+                                <td>User</td>
+                                <td class="action-buttons">
+                                    <button class="edit-button">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="delete-button">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="update-button">
+                                        <i class="fas fa-sync"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">Total: 1</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="addAccountModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Thêm Tài Khoản</h2>
+                <form id="accountForm">
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role:</label>
+                        <select id="role" required>
+                            <option value="User">User</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Save</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            const modal = document.getElementById("addAccountModal");
+            const addButton = document.querySelector(".add-button");
+            const closeBtn = document.querySelector(".close");
+            const form = document.getElementById("accountForm");
+
+            addButton.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            form.onsubmit = function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    date: document.getElementById("date").value,
+                    name: document.getElementById("name").value,
+                    phone: document.getElementById("phone").value,
+                    email: document.getElementById("email").value,
+                    password: document.getElementById("password").value,
+                    role: document.getElementById("role").value
+                };
+
+                if (!validateForm(formData)) {
+                    return;
+                }
+
+                addToTable(formData);
+                modal.style.display = "none";
+                form.reset();
+            }
+
+            function validateForm(data) {
+                if (!data.email.includes('@')) {
+                    alert('Email không hợp lệ!');
+                    return false;
+                }
+                if (data.phone.length < 10) {
+                    alert('Số điện thoại không hợp lệ!');
+                    return false;
+                }
+                if (data.password.length < 6) {
+                    alert('Mật khẩu phải có ít nhất 6 ký tự!');
+                    return false;
+                }
+                return true;
+            }
+
+            function addToTable(data) {
+                const tbody = document.querySelector('tbody');
+                const tr = document.createElement('tr');
+                
+                tr.innerHTML = `
+                    <td>${data.date}</td>
+                    <td>${data.name}</td>
+                    <td>${data.phone}</td>
+                    <td>${data.email}</td>
+                    <td>********</td>
+                    <td>${data.role}</td>
+                    <td class="action-buttons">
+                        <button class="edit-button"><i class="fas fa-edit"></i></button>
+                        <button class="delete-button"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                
+                tbody.appendChild(tr);
+            }
+        </script>
+    </body>
+</html>
